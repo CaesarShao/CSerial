@@ -1,0 +1,3 @@
+rootProject.name='CSerial'
+include ':app'
+include ':cserialhelper'
