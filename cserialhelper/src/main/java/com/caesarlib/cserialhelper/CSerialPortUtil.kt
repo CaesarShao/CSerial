@@ -6,14 +6,13 @@ import java.io.File
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
-import java.lang.Byte
 
 /**
  * @author by AllenJ on 2018/4/20.
  *
  * 通过串口用于接收或发送数据
  */
-class SerialPortUtil {
+class CSerialPortUtil {
     private var serialPort: SerialPort? = null
     private var inputStream: InputStream? = null
     private var outputStream: OutputStream? = null
@@ -58,7 +57,7 @@ class SerialPortUtil {
      * @param data 要发送的数据
      */
     fun sendSerialPort(data: String, tag: Int = 0) {
-        val sendData = DataUtils.HexToByteArr(data)
+        val sendData = CSerialDataUtils.HexToByteArr(data)
         try {
             cserialCallback?.onSendData(sendData, tag)
             outputStream!!.write(sendData)

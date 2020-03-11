@@ -6,7 +6,7 @@ import java.util.*
  * 串口数据转换工具类
  * Created by Administrator on 2016/6/2.
  */
-object DataUtils {
+object CSerialDataUtils {
     //-------------------------------------------------------
 // 判断奇数或偶数，位运算，最后一位是1则为奇数，为0是偶数
     fun isOdd(num: Int): Int {
