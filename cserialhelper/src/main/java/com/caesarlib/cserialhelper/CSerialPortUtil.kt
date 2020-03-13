@@ -23,20 +23,20 @@ class CSerialPortUtil {
      * 打开串口，接收数据
      * 通过串口，接收单片机发送来的数据
      */
-    fun openSerialPort() {
-        startSerialPort()
+    fun openSerialPort(path: String? = "/dev/ttyS3") {
+        startSerialPort(path)
         getSerialPort()
     }
 
 
-    fun openSerialPortSync() {
-        startSerialPort()
+    fun openSerialPortSync(path: String? = "/dev/ttyS3") {
+        startSerialPort(path)
         runingStream()
     }
 
-    private fun startSerialPort() {
+    private fun startSerialPort(path: String? = "/dev/ttyS3") {
         try {
-            serialPort = SerialPort(File("/dev/ttyS3"), 9600, 0)
+            serialPort = SerialPort(File(path), 9600, 0)
             //调用对象SerialPort方法，获取串口中"读和写"的数据流
             inputStream = serialPort!!.inputStream
             outputStream = serialPort!!.outputStream
