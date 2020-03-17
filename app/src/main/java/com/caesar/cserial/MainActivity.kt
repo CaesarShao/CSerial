@@ -13,11 +13,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        UartdeCtrlUtil.switchUartde(UartdeCtrlUtil.SOURCE_RECEIVE)
+//        UartdeCtrlUtil.switchUartde(UartdeCtrlUtil.SOURCE_RECEIVE)
         val port = CSerialPortUtil()
 
         Thread {
-            port.openSerialPortSync()
+            port.openSerialPortSync("/dev/ttyS1",115200)
         }.start()
         port.onCSerialCallBackListener(object : CSerialCallback {
             override fun onReceiveData(data: ByteArray) {
@@ -35,17 +35,17 @@ class MainActivity : AppCompatActivity() {
                 Log.i("caesar", "发送完成数据:" + readString)
                 Log.i("caesar", "线程:" + Thread.currentThread().name)
 
-                Thread {
-                    Thread.sleep(30)
-                    UartdeCtrlUtil.switchUartde(UartdeCtrlUtil.SOURCE_RECEIVE)
-                }.start()
+//                Thread {
+//                    Thread.sleep(30)
+//                    UartdeCtrlUtil.switchUartde(UartdeCtrlUtil.SOURCE_RECEIVE)
+//                }.start()
             }
 
         })
 
         findViewById<Button>(R.id.button).setOnClickListener {
-            UartdeCtrlUtil.switchUartde(UartdeCtrlUtil.SOURCE_SEND)
-            port.sendSerialPort("FA00020210071BFE")
+//            UartdeCtrlUtil.switchUartde(UartdeCtrlUtil.SOURCE_SEND)
+            port.sendSerialPort("A517C00327035001C20BAA110115000F03BA0000E50055")
 
         }
     }
