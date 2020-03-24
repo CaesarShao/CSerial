@@ -68,6 +68,23 @@ class CSerialPortUtil {
         }
     }
 
+    /**
+     * 发送数据
+     * 通过串口，发送数据到单片机
+     *
+     * @param data 要发送的数据
+     */
+    fun sendSerialPort(data:ByteArray, tag: Int = 0){
+        try {
+            cserialCallback?.onSendData(data, tag)
+            outputStream!!.write(data)
+            outputStream!!.flush()
+            cserialCallback?.onSendComplete(data, tag)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
     private fun getSerialPort() {
         if (mReceiveThread == null) {
             mReceiveThread = ReceiveThread()
